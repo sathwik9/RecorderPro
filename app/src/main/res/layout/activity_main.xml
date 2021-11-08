@@ -4,15 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintCircleRadius="10dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <RadioButton
+        android:id="@+id/left1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="5dp"
+        android:scrollbarSize="20dp"
+        android:textSize="0sp"
+        app:circularflow_defaultRadius="25dp"
+        app:circularflow_radiusInDP="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintCircleRadius="50dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioButton
+        android:id="@+id/left2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/left1"
+        app:layout_constraintBottom_toTopOf="@id/left1" />
+
+    <RadioButton
+        android:id="@+id/left3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/left2"
+        app:layout_constraintBottom_toTopOf="@id/left2" />
+
+    <RadioButton
+        android:id="@+id/left4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/left3"
+        app:layout_constraintBottom_toTopOf="@id/left3" />
+
+    <RadioButton
+        android:id="@+id/left5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="-120dp"
+        app:layout_constraintRight_toRightOf="@id/left4"
+        app:layout_constraintTop_toTopOf="@id/left4" />
+
+    <RadioButton
+        android:id="@+id/right1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="5dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/left2" />
+
+    <RadioButton
+        android:id="@+id/right2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintRight_toRightOf="@id/right1"
+        app:layout_constraintBottom_toTopOf="@id/right1" />
+
+    <RadioButton
+        android:id="@+id/right3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintRight_toRightOf="@id/right2"
+        app:layout_constraintBottom_toTopOf="@id/right2" />
+
+    <RadioButton
+        android:id="@+id/right4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintRight_toRightOf="@id/right3"
+        app:layout_constraintBottom_toTopOf="@id/right3" />
+
+    <TextView
+        android:id="@+id/Note_to_be_played"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:text="NOTE"
+        android:textSize="96sp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="25dp"
+        app:layout_constraintLeft_toLeftOf="@id/left4"
+        app:layout_constraintBottom_toTopOf="@id/left4" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
