@@ -21,6 +21,8 @@ public class Microphone extends AppCompatActivity {
 
     private AudioRecord recorder = null;
     private boolean isRecording = true;
+    private Thread recordingThread = null;
+    private boolean blowDetected = false;
 
 
     @Override
@@ -51,31 +53,40 @@ public class Microphone extends AppCompatActivity {
 
         recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING, bufferSize);
         recorder.startRecording();
+        blowDetected = false;
 
         Log.v("MICROPHONE_INPUT", "***RECORDING STARTED***");
 
-        while(isRecording)
-        {
-
-            recorder.read(buffer, 0, bufferSize);
-            for (short s : buffer)
-            {
-                if (Math.abs(s) > 27000)   // detect volume when blowing into mic
+        recordingThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(isRecording)
                 {
-                    float blow_value=Math.abs(s);
-                    Log.v("MICROPHONE_INPUT", "Blow Value=" + blow_value);
-                    recorder.stop();
-                    isRecording = false;
 
-                    return true;
+                    recorder.read(buffer, 0, bufferSize);
+                    for (short s : buffer)
+                    {
+                        if (Math.abs(s) > 27000)   // detect volume when blowing into mic
+                        {
+                            float blow_value=Math.abs(s);
+                            Log.v("MICROPHONE_INPUT", "Blow Value=" + blow_value);
+                            recorder.stop();
+                            isRecording = false;
 
-                } else {
-                    Log.v("MICROPHONE_INPUT", "***not detecting blow***");
+                            blowDetected = true;
+
+                        } else {
+                            Log.v("MICROPHONE_INPUT", "***not detecting blow***");
+                        }
+
+                    }
                 }
-
             }
-        }
-        return false;
+        });
+
+        recordingThread.start();
+
+        return blowDetected;
 
     }
 }
