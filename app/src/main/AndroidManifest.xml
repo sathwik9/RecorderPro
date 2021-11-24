@@ -3,6 +3,7 @@
     package="ece.wisc.recorder">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recorder">
         <activity
-            android:name=".Microphone"
+            android:name=".FreePlay"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,8 +13,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // microphone activity
-        Intent intent = new Intent(this, Microphone.class);
+
+    }
+
+    public void freePlayButton(View view) {
+        // go into free play mode
+        Intent intent = new Intent(this, FreePlay.class);
         startActivity(intent);
     }
 }
