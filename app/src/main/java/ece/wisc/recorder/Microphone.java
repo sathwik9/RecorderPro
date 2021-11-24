@@ -71,7 +71,7 @@ public class Microphone extends AppCompatActivity {
                             float blow_value=Math.abs(s);
                             Log.v("MICROPHONE_INPUT", "Blow Value=" + blow_value);
                             recorder.stop();
-                            isRecording = false;
+                            // isRecording = false;
 
                             blowDetected = true;
 
