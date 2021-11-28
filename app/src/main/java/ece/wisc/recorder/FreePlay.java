@@ -36,57 +36,57 @@ public class FreePlay extends AppCompatActivity {
         isBlowing();
     }
 
-    public boolean isBlowing() {
-        int bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
+    public boolean isBlowingValue() {
+        boolean recorder = true;
 
+        int minSize = AudioRecord.getMinBufferSize(8000, AudioFormat.CHANNEL_CONFIGURATION_MONO, AudioFormat.ENCODING_PCM_16BIT);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_RECORD_AUDIO);
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
-
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-
         }
-        short[] buffer = new short[bufferSize];
+        AudioRecord ar = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000, AudioFormat.CHANNEL_CONFIGURATION_MONO, AudioFormat.ENCODING_PCM_16BIT, minSize);
+        short[] buffer = new short[minSize];
 
-        recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING, bufferSize);
-        recorder.startRecording();
-        blowDetected = false;
+        ar.startRecording();
+        while(recorder)
+        {
 
+            ar.read(buffer, 0, minSize);
+            for (short s : buffer)
+            {
+                if (Math.abs(s) > 27000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
+                {
+                    int blow_value = Math.abs(s);
+                    System.out.println("Blow Value="+blow_value);
+                    ar.stop();
+                    recorder=false;
+
+                    return true;
+
+                }
+            }
+        }
+        return false;
+
+    }
+
+    public boolean isBlowing() {
         Log.v("MICROPHONE_INPUT", "***RECORDING STARTED***");
 
         recordingThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(isRecording)
-                {
-
-                    recorder.read(buffer, 0, bufferSize);
-                    for (short s : buffer)
-                    {
-                        if (Math.abs(s) > 27000)   // detect volume when blowing into mic
-                        {
-                            float blow_value=Math.abs(s);
-                            Log.v("MICROPHONE_INPUT", "Blow Value=" + blow_value);
-                            recorder.stop();
-                            // isRecording = false;
-
-                            blowDetected = true;
-
-                        } else {
-                            Log.v("MICROPHONE_INPUT", "***not detecting blow***");
-                        }
-
-                    }
+                while(true) {
+                    Log.v("mic", "is blowing is" + isBlowingValue());
                 }
             }
         });
-
         recordingThread.start();
-
         return blowDetected;
-
     }
 }
