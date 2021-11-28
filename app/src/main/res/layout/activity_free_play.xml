@@ -10,8 +10,8 @@
         android:id="@+id/left1"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/left_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,50 +61,54 @@
         android:id="@+id/right1"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:layout_marginEnd="5dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/right_button"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/left2"
+        app:layout_constraintTop_toTopOf="@id/left5"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/right2"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/right_button"
         app:layout_constraintBottom_toTopOf="@id/right1"
-        app:layout_constraintRight_toRightOf="@id/right1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/right4"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/right3"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/right_button"
         app:layout_constraintBottom_toTopOf="@id/right2"
-        app:layout_constraintRight_toRightOf="@id/right2"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/right4"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/right_button"
         app:layout_constraintBottom_toTopOf="@id/right3"
-        app:layout_constraintRight_toRightOf="@id/right3"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/right5"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/right_button"
-        app:layout_constraintTop_toTopOf="@id/right3"
         app:layout_constraintRight_toLeftOf="@id/right3"
+        app:layout_constraintTop_toTopOf="@id/right3"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
@@ -127,6 +131,7 @@
         android:textSize="96sp"
         app:layout_constraintBottom_toTopOf="@id/left4"
         app:layout_constraintLeft_toLeftOf="@id/left4" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
