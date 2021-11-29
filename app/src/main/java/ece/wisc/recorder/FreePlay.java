@@ -2,6 +2,7 @@ package ece.wisc.recorder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,7 +12,9 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 public class FreePlay extends AppCompatActivity {
 
@@ -28,11 +31,215 @@ public class FreePlay extends AppCompatActivity {
     private AudioRecord ar = null;
     private int minSize;
 
+    ImageView Left1, Left2, Left3, Left4, Right1, Right2, Right3, Right4, Right3_2, Right4_2;
+    protected boolean L1, L2, L3, L4, R1, R2, R3, R3_2, R4, R4_2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_play);
+
+        Left1 = findViewById(R.id.Left1);
+        Left2 = findViewById(R.id.Left2);
+        Left3 = findViewById(R.id.Left3);
+        Left4 = findViewById(R.id.Left4);
+        Right1 = findViewById(R.id.Right1);
+        Right2 = findViewById(R.id.Right2);
+        Right3 = findViewById(R.id.Right3);
+        Right3_2 = findViewById(R.id.Right3_2);
+        Right4 = findViewById(R.id.Right4);
+        Right4_2 = findViewById(R.id.Right4_2);
+
+        Left1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Left1.setImageResource(R.drawable.pushed_button);
+                        L1 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Left1.setImageResource(R.drawable.left_button);
+                        L1 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Left2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Left2.setImageResource(R.drawable.pushed_button);
+                        L2 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Left2.setImageResource(R.drawable.left_button);
+                        L2 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Left3.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Left3.setImageResource(R.drawable.pushed_button);
+                        L3 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Left3.setImageResource(R.drawable.left_button);
+                        L3 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Left4.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Left4.setImageResource(R.drawable.pushed_button);
+                        L4 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Left4.setImageResource(R.drawable.left_button);
+                        L4 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Right1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Right1.setImageResource(R.drawable.pushed_button);
+                        R1 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Right1.setImageResource(R.drawable.right_button);
+                        R1 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Right2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Right2.setImageResource(R.drawable.pushed_button);
+                        R2 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Right2.setImageResource(R.drawable.right_button);
+                        R2 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Right3.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Right3.setImageResource(R.drawable.pushed_button);
+                        R3 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Right3.setImageResource(R.drawable.right_button);
+                        R3 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Right3_2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Right3_2.setImageResource(R.drawable.pushed_button);
+                        R3_2 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Right3_2.setImageResource(R.drawable.right_button);
+                        R3_2 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Right4.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Right4.setImageResource(R.drawable.pushed_button);
+                        R4 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Right4.setImageResource(R.drawable.right_button);
+                        R4 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Right4_2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Right4_2.setImageResource(R.drawable.pushed_button);
+                        R4_2 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Right4_2.setImageResource(R.drawable.right_button);
+                        R4_2 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
