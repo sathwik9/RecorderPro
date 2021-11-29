@@ -67,9 +67,6 @@ public class FreePlay extends AppCompatActivity {
     public boolean isBlowingValue() {
         boolean recorder = true;
 
-
-
-
         short[] buffer = new short[minSize];
 
         ar.startRecording();
