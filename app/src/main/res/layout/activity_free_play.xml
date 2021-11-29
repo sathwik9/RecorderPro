@@ -6,160 +6,159 @@
     android:layout_height="match_parent"
     tools:context=".FreePlay">
 
-    <Button
-        android:id="@+id/left1"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/left_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/left2"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/left_button"
-        app:layout_constraintBottom_toTopOf="@id/left1"
-        app:layout_constraintLeft_toLeftOf="@id/left1"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/left3"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/left_button"
-        app:layout_constraintBottom_toTopOf="@id/left2"
-        app:layout_constraintLeft_toLeftOf="@id/left2"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/left4"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/left_button"
-        app:layout_constraintBottom_toTopOf="@id/left3"
-        app:layout_constraintLeft_toLeftOf="@id/left3"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/left5"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginEnd="-80dp"
-        android:background="@drawable/left_button"
-        app:layout_constraintRight_toRightOf="@id/left4"
-        app:layout_constraintTop_toTopOf="@id/left4"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/right1"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/right_button"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/left5"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/right2"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/right_button"
-        app:layout_constraintBottom_toTopOf="@id/right1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/right4"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/right3"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/right_button"
-        app:layout_constraintBottom_toTopOf="@id/right2"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/right4"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/right_button"
-        app:layout_constraintBottom_toTopOf="@id/right3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/right5"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/right_button"
-        app:layout_constraintRight_toLeftOf="@id/right3"
-        app:layout_constraintTop_toTopOf="@id/right3"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/right6"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="@dimen/button_size"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/right_button"
-        app:layout_constraintTop_toTopOf="@id/right4"
-        app:layout_constraintRight_toLeftOf="@id/right4"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <TextView
         android:id="@+id/Note_to_be_played"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="A"
         android:textSize="96sp"
-        app:layout_constraintBottom_toTopOf="@id/left4"
-        app:layout_constraintLeft_toLeftOf="@id/left4" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
+        android:id="@+id/start"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
+        android:onClick="startButton"
+        app:layout_constraintBottom_toTopOf="@+id/Note_to_be_played"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/pause"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        android:onClick="pauseButton"
+        app:layout_constraintEnd_toStartOf="@+id/stop"
+        app:layout_constraintStart_toEndOf="@+id/start"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_pause_24" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/stop"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        android:onClick="stopButton"
+        app:layout_constraintStart_toEndOf="@+id/pause"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_stop_24" />
+
+    <Chronometer
+        android:id="@+id/cmTimer"
+        android:layout_width="100dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="29dp"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/stop"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side"
+        android:layout_marginBottom="@dimen/margin"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/left_button" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side"
+        android:layout_marginBottom="@dimen/margin"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/left_button" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side"
+        android:layout_marginBottom="@dimen/margin"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/left_button" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side"
+        android:layout_marginBottom="@dimen/margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/left_button" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/side"
+        android:layout_marginBottom="@dimen/margin"
+        app:layout_constraintBottom_toTopOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/right_button" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/side"
+        android:layout_marginBottom="@dimen/margin"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/right_button" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView14"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:srcCompat="@drawable/right_button" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="58dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:srcCompat="@drawable/right_button" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/side"
+        android:layout_marginBottom="235dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/right_button" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/side"
+        android:layout_marginBottom="@dimen/margin"
+        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/right_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
