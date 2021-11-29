@@ -25,8 +25,8 @@ public class FreePlay extends AppCompatActivity {
     private Thread recordingThread = null;
     private boolean blowDetected = false;
 
-    private AudioRecord ar = null;
-    private int minSize;
+     public AudioRecord ar = null;
+     public int minSize;
 
 
     @Override
@@ -35,6 +35,8 @@ public class FreePlay extends AppCompatActivity {
         setContentView(R.layout.activity_free_play);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
+                    123);
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -42,14 +44,20 @@ public class FreePlay extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+
         }
+
         minSize = AudioRecord.getMinBufferSize(8000, RECORDER_CHANNELS, AudioFormat.ENCODING_PCM_16BIT);
         ar = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000, RECORDER_CHANNELS, AudioFormat.ENCODING_PCM_16BIT, minSize);
+        Log.v("ar log", String.valueOf(ar));
+        ar.startRecording();
+
         // get intent
-        // Intent intent = getIntent();
+        Intent intent = getIntent();
         Log.v("MICROPHONE_CLASS", "microphone activity starting!!");
         isBlowing();
     }
+
 
     public void startButton(View view) {
 
@@ -68,8 +76,8 @@ public class FreePlay extends AppCompatActivity {
         boolean recorder = true;
 
         short[] buffer = new short[minSize];
+        Log.v("ar log", String.valueOf(ar));
 
-        ar.startRecording();
         while(recorder)
         {
 
@@ -94,6 +102,7 @@ public class FreePlay extends AppCompatActivity {
 
     public void isBlowing() {
         Log.v("MICROPHONE_INPUT", "***RECORDING STARTED***");
+
 
         recordingThread = new Thread(new Runnable() {
             @Override
