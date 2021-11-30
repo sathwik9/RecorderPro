@@ -1,9 +1,11 @@
 package ece.wisc.recorder;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioFormat;
@@ -11,7 +13,10 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 
 public class FreePlay extends AppCompatActivity {
 
@@ -68,8 +73,33 @@ public class FreePlay extends AppCompatActivity {
 
     }
     public void stopButton(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FreePlay.this);
+        builder.setTitle("Save Song Recording");
 
+        View viewInflated = LayoutInflater.from(FreePlay.this).inflate(R.layout.save_recording_dialog, (ViewGroup) findViewById(R.id.content), false);
 
+        // text input field
+        final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+        builder.setView(viewInflated);
+
+        // save file
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                String m_Text = input.getText().toString();
+            }
+        });
+
+        // discard file
+        builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 
     public boolean isBlowingValue() {

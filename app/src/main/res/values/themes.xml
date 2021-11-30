@@ -21,4 +21,5 @@
     <style name="Button.Right" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@color/scarlet_red</item>
     </style>
+
 </resources>
