@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/Note_to_be_played"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
         android:layout_marginStart="10dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="A"
@@ -61,37 +61,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/Left3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/side"
         android:layout_marginBottom="@dimen/margin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/Left2"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/left_button" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/Left4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/side"
         android:layout_marginBottom="@dimen/margin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/Left3"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/left_button" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/Left2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/side"
         android:layout_marginBottom="@dimen/margin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintBottom_toTopOf="@+id/Left1"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/left_button" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/Left1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/side"
@@ -101,47 +101,47 @@
         app:srcCompat="@drawable/left_button" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/Right2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/side"
         android:layout_marginBottom="@dimen/margin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
+        app:layout_constraintBottom_toTopOf="@+id/Right1"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/right_button" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/Right3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/side"
         android:layout_marginBottom="@dimen/margin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintBottom_toTopOf="@+id/Right2"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/right_button" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/Right4_2"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="38dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView14"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintBottom_toTopOf="@+id/Right3_2"
+        app:layout_constraintEnd_toStartOf="@+id/Right4"
         app:srcCompat="@drawable/right_button" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/Right3_2"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="58dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintBottom_toTopOf="@+id/Left4"
+        app:layout_constraintEnd_toStartOf="@+id/Right3"
         app:srcCompat="@drawable/right_button" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/Right1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/side"
@@ -151,12 +151,12 @@
         app:srcCompat="@drawable/right_button" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/Right4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/side"
         android:layout_marginBottom="@dimen/margin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+        app:layout_constraintBottom_toTopOf="@+id/Right3"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/right_button" />
 
