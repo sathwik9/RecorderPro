@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/Note_to_be_played"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
         android:layout_marginStart="10dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="A"

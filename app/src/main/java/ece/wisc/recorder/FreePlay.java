@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class FreePlay extends AppCompatActivity {
 
@@ -31,7 +33,9 @@ public class FreePlay extends AppCompatActivity {
     private AudioRecord ar = null;
     private int minSize;
 
+    TextView note_being_played;
     ImageView Left1, Left2, Left3, Left4, Right1, Right2, Right3, Right4, Right3_2, Right4_2;
+    MediaPlayer mp;
     protected boolean L1, L2, L3, L4, R1, R2, R3, R3_2, R4, R4_2;
 
 
@@ -50,6 +54,11 @@ public class FreePlay extends AppCompatActivity {
         Right3_2 = findViewById(R.id.Right3_2);
         Right4 = findViewById(R.id.Right4);
         Right4_2 = findViewById(R.id.Right4_2);
+
+        note_being_played = findViewById(R.id.Note_to_be_played);
+
+        mp = MediaPlayer.create(this, R.raw.c2);
+        mp.setLooping(true);
 
         Left1.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -273,28 +282,34 @@ public class FreePlay extends AppCompatActivity {
 
     public boolean isBlowingValue() {
         boolean recorder = true;
-
-
-
-
         short[] buffer = new short[minSize];
 
         ar.startRecording();
         while(recorder)
         {
-
+            determine_note();
             ar.read(buffer, 0, minSize);
             for (short s : buffer)
             {
-                if (Math.abs(s) > 27000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
+                if (Math.abs(s) > 17000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
                 {
                     int blow_value = Math.abs(s);
-                    System.out.println("Blow Value="+blow_value);
+                    //System.out.println("Blow Value="+blow_value);
+                    Log.v("mic_val","Blow Value"+blow_value);
                     ar.stop();
                     recorder=false;
-
+                    mp.start();
                     return true;
 
+                }
+                else {
+                    //mp.stop();
+                    int blow_value = Math.abs(s);
+                    Log.v("mic_val", "Blow Value: "+blow_value);
+                    if(mp.isPlaying()){
+                        mp.stop();
+                        return false;
+                    }
                 }
             }
         }
@@ -310,11 +325,87 @@ public class FreePlay extends AppCompatActivity {
             public void run() {
                 while(true) {
                     //blowDetected = false;
-                    Log.v("mic", "is blowing is" + isBlowingValue());
+                    //mp.stop();
+                    Log.v("mic", "is blowing is " + isBlowingValue());
+                    //mp.start();
                 }
             }
         });
         recordingThread.start();
+    }
+
+    public void determine_note(){
+        if(L1 && L2 && L3  && L4  &&
+                R1 && R2 && R3 && R4 && !R3_2 && !R4_2){
+            note_being_played.setText("C \n1");
+        }
+        else if(L1 && L2 && L3  && L4  &&
+                R1 && R2 && R3 && !R4 && !R3_2 && R4_2){
+            note_being_played.setText("C# \n1");
+        }
+        else if(L1 && L2 && L3  && L4  &&
+                R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("D \n1");
+        }
+        else if(L1 && L2 && L3  && L4  &&
+                R1 && R2 && !R3 && !R4 && R3_2 && !R4_2){
+            note_being_played.setText("D# \n1");
+        }
+        else if(L1 && L2 && L3  && L4  &&
+                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("E \n1");
+        }
+        else if(L1 && L2 && L3  && L4  &&
+                R1 && !R2 && R3 && R4 && !R3_2 && !R4_2){
+            note_being_played.setText("F \n1");
+        }
+        else if(L1 && L2 && L3  && L4  &&
+                !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("F# \n1");
+        }
+        else if(L1 && L2 && L3  && L4  &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("G \n1");
+        }
+        else if(L1 && L2 && !L3  && L4  &&
+                R1 && R2 && !R3 && !R4 && R3_2 && !R4_2){
+            note_being_played.setText("G# \n1");
+        }
+        else if(L1 && L2 && !L3  && L4  &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("A \n1");
+        }
+        else if(L1 && !L2 && L3  && L4  &&
+                !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("A# \n1");
+        }
+        else if(L1 && !L2 && !L3  && L4  &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("B \n1");
+        }
+        else if(L1 && !L2 && !L3  && L4  &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("B \n2");
+        }
+        else if(L1 && !L2 && !L3  && L4  &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("B \n2");
+        }
+        else if(L1 && !L2 && !L3  && L4  &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("B \n2");
+        }
+        else if(L1 && !L2 && !L3  && L4  &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("B \n2");
+        }
+        //there are another 16 notes but they use the L4_2 fingering and we don't have that available
+        // with our current button layout
+        else{
+            note_being_played.setText("-\n-");
+        }
+
+
     }
 }
 
