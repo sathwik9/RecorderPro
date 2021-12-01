@@ -383,21 +383,21 @@ public class FreePlay extends AppCompatActivity {
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("B \n1");
         }
-        else if(L1 && !L2 && !L3  && L4  &&
+        else if(!L1 && L2 && !L3  && L4  &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("B \n2");
+            note_being_played.setText("C \n2");
         }
-        else if(L1 && !L2 && !L3  && L4  &&
+        else if(L1 && L2 && !L3  && !L4  &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("B \n2");
+            note_being_played.setText("C# \n2");
         }
-        else if(L1 && !L2 && !L3  && L4  &&
+        else if(!L1 && L2 && !L3  && !L4  &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("B \n2");
+            note_being_played.setText("D \n2");
         }
-        else if(L1 && !L2 && !L3  && L4  &&
+        else if(!L1 && L2 && L3  && !L4  &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("B \n2");
+            note_being_played.setText("D# \n2");
         }
         //there are another 16 notes but they use the L4_2 fingering and we don't have that available
         // with our current button layout
