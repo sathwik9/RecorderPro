@@ -41,9 +41,11 @@ public class FreePlay extends AppCompatActivity {
     private String note  = "";
 
     TextView note_being_played;
-    ImageView Left1, Left2, Left3, Left4, Right1, Right2, Right3, Right4, Right3_2, Right4_2;
+    ImageView Left1, Left2, Left3, Left4, Left4_2, Right1, Right2, Right3, Right4, Right3_2, Right4_2;
+
+    protected boolean L1, L2, L3, L4, L4_2, R1, R2, R3, R3_2, R4, R4_2;
     MediaPlayer mp;
-    protected boolean L1, L2, L3, L4, R1, R2, R3, R3_2, R4, R4_2;
+    Integer mp3_file;
 
 
     @Override
@@ -55,6 +57,7 @@ public class FreePlay extends AppCompatActivity {
         Left2 = findViewById(R.id.Left2);
         Left3 = findViewById(R.id.Left3);
         Left4 = findViewById(R.id.Left4);
+        Left4_2 = findViewById(R.id.Left4_2);
         Right1 = findViewById(R.id.Right1);
         Right2 = findViewById(R.id.Right2);
         Right3 = findViewById(R.id.Right3);
@@ -64,8 +67,7 @@ public class FreePlay extends AppCompatActivity {
 
         note_being_played = findViewById(R.id.Note_to_be_played);
 
-        mp = MediaPlayer.create(this, R.raw.c2);
-        mp.setLooping(false);
+        mp = MediaPlayer.create(this, R.raw.a1);   //change to default blank sound!!!!!!!!!!!!!!!!!!!!!!!!
 
         Left1.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -136,6 +138,25 @@ public class FreePlay extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:{
                         Left4.setImageResource(R.drawable.left_button);
                         L4 = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        Left4_2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Left4_2.setImageResource(R.drawable.pushed_button);
+                        L4_2 = true;
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:{
+                        Left4_2.setImageResource(R.drawable.left_button);
+                        L4_2 = false;
                         break;
                     }
                 }
@@ -339,19 +360,15 @@ public class FreePlay extends AppCompatActivity {
                     Log.v("mic_val","Blow Value"+blow_value);
                     ar.stop();
                     recorder=false;
+                    if(mp.isPlaying()){
+                        mp.stop();
+                    }
+                    mp.release();
+                    mp = MediaPlayer.create(this, mp3_file);
                     mp.start();
                     return true;
 
                 }
-//                else {
-//                    //mp.stop();
-//                    int blow_value = Math.abs(s);
-//                    Log.v("mic_val", "Blow Value: "+blow_value);
-//                    if(mp.isPlaying()){
-//                        mp.stop();
-//                        return false;
-//                    }
-//                }
             }
         }
         return false;
@@ -367,10 +384,7 @@ public class FreePlay extends AppCompatActivity {
             public void run() {
                 while(true) {
                     //blowDetected = false;
-                    //mp.stop();
                     Log.v("mic", "is blowing is " + isBlowingValue());
-                    //mp.stop();
-                    //mp.start();
                 }
             }
         });
@@ -378,69 +392,86 @@ public class FreePlay extends AppCompatActivity {
     }
 
     public void determine_note(){
-        if(L1 && L2 && L3  && L4  &&
+        if(L1 && L2 && L3  && L4  && !L4_2 &&
                 R1 && R2 && R3 && R4 && !R3_2 && !R4_2){
             note_being_played.setText("C \n1");
+            //mp = MediaPlayer.create(this, R.id.left);
+            mp3_file = R.raw.c1;
         }
-        else if(L1 && L2 && L3  && L4  &&
+        else if(L1 && L2 && L3  && L4  && !L4_2 &&
                 R1 && R2 && R3 && !R4 && !R3_2 && R4_2){
             note_being_played.setText("C# \n1");
+            mp3_file = R.raw.c_1;
         }
-        else if(L1 && L2 && L3  && L4  &&
+        else if(L1 && L2 && L3  && L4  && !L4_2 &&
                 R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("D \n1");
+            mp3_file = R.raw.d1;
         }
-        else if(L1 && L2 && L3  && L4  &&
+        else if(L1 && L2 && L3  && L4  && !L4_2 &&
                 R1 && R2 && !R3 && !R4 && R3_2 && !R4_2){
             note_being_played.setText("D# \n1");
+            mp3_file = R.raw.d_1;
         }
-        else if(L1 && L2 && L3  && L4  &&
+        else if(L1 && L2 && L3  && L4  && !L4_2 &&
                 R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("E \n1");
+            mp3_file = R.raw.e1;
         }
-        else if(L1 && L2 && L3  && L4  &&
+        else if(L1 && L2 && L3  && L4  && !L4_2 &&
                 R1 && !R2 && R3 && R4 && !R3_2 && !R4_2){
             note_being_played.setText("F \n1");
+            mp3_file = R.raw.f1;
         }
-        else if(L1 && L2 && L3  && L4  &&
+        else if(L1 && L2 && L3  && L4  && !L4_2 &&
                 !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("F# \n1");
+            mp3_file = R.raw.f_1;
         }
-        else if(L1 && L2 && L3  && L4  &&
+        else if(L1 && L2 && L3  && L4  && !L4_2 &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("G \n1");
+            note_being_played.setText("G \n1");;
+            mp3_file = R.raw.g1;
         }
-        else if(L1 && L2 && !L3  && L4  &&
+        else if(L1 && L2 && !L3  && L4  && !L4_2 &&
                 R1 && R2 && !R3 && !R4 && R3_2 && !R4_2){
             note_being_played.setText("G# \n1");
+            mp3_file = R.raw.g_1;
         }
-        else if(L1 && L2 && !L3  && L4  &&
+        else if(L1 && L2 && !L3  && L4  && !L4_2 &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("A \n1");
+            mp3_file = R.raw.a1;
         }
-        else if(L1 && !L2 && L3  && L4  &&
+        else if(L1 && !L2 && L3  && L4  && !L4_2 &&
                 !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("A# \n1");
+            mp3_file = R.raw.a_1;
         }
-        else if(L1 && !L2 && !L3  && L4  &&
+        else if(L1 && !L2 && !L3  && L4  && !L4_2 &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("B \n1");
+            mp3_file = R.raw.b1;
         }
-        else if(!L1 && L2 && !L3  && L4  &&
+        else if(!L1 && L2 && !L3  && L4  && !L4_2 &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("C \n2");
+            mp3_file = R.raw.c2;
         }
-        else if(L1 && L2 && !L3  && !L4  &&
+        else if(L1 && L2 && !L3  && !L4  && !L4_2 &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("C# \n2");
+            mp3_file = R.raw.c_2;
         }
-        else if(!L1 && L2 && !L3  && !L4  &&
+        else if(!L1 && L2 && !L3  && !L4  && !L4_2 &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("D \n2");
+            mp3_file = R.raw.d2;
         }
-        else if(!L1 && L2 && L3  && !L4  &&
+        else if(!L1 && L2 && L3  && !L4  && !L4_2 &&
                 !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
             note_being_played.setText("D# \n2");
+            mp3_file = R.raw.d_2;
         }
         //there are another 16 notes but they use the L4_2 fingering and we don't have that available
         // with our current button layout
