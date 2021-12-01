@@ -81,6 +81,19 @@
         app:srcCompat="@drawable/left_button" />
 
     <ImageView
+        android:id="@+id/left2"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="304dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Left4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/left_button" />
+
+    <ImageView
         android:id="@+id/Left2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
