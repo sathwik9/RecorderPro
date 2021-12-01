@@ -302,15 +302,15 @@ public class FreePlay extends AppCompatActivity {
                     return true;
 
                 }
-                else {
-                    //mp.stop();
-                    int blow_value = Math.abs(s);
-                    Log.v("mic_val", "Blow Value: "+blow_value);
-                    if(mp.isPlaying()){
-                        mp.stop();
-                        return false;
-                    }
-                }
+//                else {
+//                    //mp.stop();
+//                    int blow_value = Math.abs(s);
+//                    Log.v("mic_val", "Blow Value: "+blow_value);
+//                    if(mp.isPlaying()){
+//                        mp.stop();
+//                        return false;
+//                    }
+//                }
             }
         }
         return false;
@@ -327,6 +327,7 @@ public class FreePlay extends AppCompatActivity {
                     //blowDetected = false;
                     //mp.stop();
                     Log.v("mic", "is blowing is " + isBlowingValue());
+                    //mp.stop();
                     //mp.start();
                 }
             }
