@@ -33,6 +33,8 @@ public class FreePlay extends AppCompatActivity {
     private AudioRecord ar = null;
     private int minSize;
 
+    private String note  = "";
+
     TextView note_being_played;
     ImageView Left1, Left2, Left3, Left4, Right1, Right2, Right3, Right4, Right3_2, Right4_2;
     MediaPlayer mp;
@@ -58,7 +60,7 @@ public class FreePlay extends AppCompatActivity {
         note_being_played = findViewById(R.id.Note_to_be_played);
 
         mp = MediaPlayer.create(this, R.raw.c2);
-        mp.setLooping(true);
+        mp.setLooping(false);
 
         Left1.setOnTouchListener(new View.OnTouchListener() {
             @Override
