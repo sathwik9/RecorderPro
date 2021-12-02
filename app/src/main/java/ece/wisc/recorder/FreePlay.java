@@ -475,9 +475,75 @@ public class FreePlay extends AppCompatActivity {
         }
         //there are another 16 notes but they use the L4_2 fingering and we don't have that available
         // with our current button layout
+        else if(L1 && !L2 && L3  && !L4  && L4_2 &&
+                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("E \n2");
+            mp3_file = R.raw.e2;
+        }
+        else if(L1 && L2 && L3  && !L4  && L4_2 &&
+                R1 && !R2 && R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("F \n2");
+            mp3_file = R.raw.f2;
+        }
+        else if(L1 && L2 && L3  && !L4  && L4_2 &&
+                !R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("F# \n2");
+            mp3_file = R.raw.f_2;
+        }
+        else if(L1 && L2 && L3  && !L4  && L4_2 &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("G \n2");
+            mp3_file = R.raw.g2;
+        }
+        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
+                R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("G# \n2");
+            mp3_file = R.raw.g_2;
+        }
+        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("A \n2");
+            mp3_file = R.raw.a2;
+        }
+        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
+                !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("A# \n2");
+            mp3_file = R.raw.a_2;
+        }
+        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
+                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("B \n2");
+            mp3_file = R.raw.b2;
+        }
+        else if(!L1 && !L2 && !L3  && !L4  && L4_2 &&
+                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText(" \n3");
+            mp3_file = R.raw.d_2;
+        }
+        else if(L1 && !L2 && !L3  && !L4  && L4_2 &&
+                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("C \n3");
+            mp3_file = R.raw.c3;
+        }
+        else if(L1 && !L2 && L3  && !L4  && L4_2 &&
+                R1 && !R2 && R3 && !R4 && !R3_2 && R4_2){
+            note_being_played.setText("D# \n3");
+            mp3_file = R.raw.d_3;
+        }
+        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
+                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("F# \n3");
+            mp3_file = R.raw.f_3;
+        }
+        else if(L1 && !L2 && !L3  && !L4  && L4_2 &&
+                R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("G \n3");
+            mp3_file = R.raw.g3;
+        }
         else{
             note_being_played.setText("-\n-");
         }
+        //can't use the C#, E, or F notes in third octave since they use the knee hole.
 
 
     }
