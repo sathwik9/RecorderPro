@@ -347,17 +347,23 @@ public class FreePlay extends AppCompatActivity {
                 if (Math.abs(s) > 27000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
                 {
                     int blow_value = Math.abs(s);
-                    System.out.println("Blow Value="+blow_value);
+                    // System.out.println("Blow Value="+blow_value);
                     ar.stop();
                     recorder = false;
 
-                    mp.release();
-                    mp = MediaPlayer.create(this, mp3_file);
-                    mp.start();
+                    if(!mp.isPlaying()) {
+                        mp.release();
+                        mp = MediaPlayer.create(this, mp3_file);
+                        mp.start();
+                    }
 
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                     return true;
-
                 }
             }
         }
@@ -366,13 +372,12 @@ public class FreePlay extends AppCompatActivity {
     }
 
     public boolean isBlowing() {
-        Log.v("MICROPHONE_INPUT", "***RECORDING STARTED***");
-
         recordingThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true) {
-                    Log.v("mic", "is blowing is" + isBlowingValue());
+                    isBlowingValue();
+                    // Log.v("mic", "is blowing is" + isBlowingValue());
                 }
             }
         });
