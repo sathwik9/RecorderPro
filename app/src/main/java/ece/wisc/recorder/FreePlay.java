@@ -26,32 +26,29 @@ import android.widget.TextView;
 public class FreePlay extends AppCompatActivity {
 
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
-    private static final int RECORDER_SAMPLE_RATE = 8000;
+    private static final int RECORDER_SAMPLERATE = 8000;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
 
-    private AudioRecord recorder = null;
+    private AudioRecord ar = null;
+    private int minSize = 0;
+
     private boolean isRecording = true;
     private Thread recordingThread = null;
     private boolean blowDetected = false;
 
-     public AudioRecord ar = null;
-     public int minSize;
-
-    private String note  = "";
-
+    MediaPlayer mp;
     TextView note_being_played;
     ImageView Left1, Left2, Left3, Left4, Left4_2, Right1, Right2, Right3, Right4, Right3_2, Right4_2;
-
-    protected boolean L1, L2, L3, L4, L4_2, R1, R2, R3, R3_2, R4, R4_2;
-    MediaPlayer mp;
-    Integer mp3_file;
-
+    private boolean L1, L2, L3, L4, L4_2, R1, R2, R3, R3_2, R4, R4_2;
+    private Integer mp3_file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_play);
+
+        note_being_played = findViewById(R.id.Note_to_be_played);
 
         Left1 = findViewById(R.id.Left1);
         Left2 = findViewById(R.id.Left2);
@@ -64,10 +61,6 @@ public class FreePlay extends AppCompatActivity {
         Right3_2 = findViewById(R.id.Right3_2);
         Right4 = findViewById(R.id.Right4);
         Right4_2 = findViewById(R.id.Right4_2);
-
-        note_being_played = findViewById(R.id.Note_to_be_played);
-
-        mp = MediaPlayer.create(this, R.raw.a1);   //change to default blank sound!!!!!!!!!!!!!!!!!!!!!!!!
 
         Left1.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -278,6 +271,7 @@ public class FreePlay extends AppCompatActivity {
             }
         });
 
+        // request permission
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
                     123);
@@ -290,18 +284,16 @@ public class FreePlay extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
 
         }
-
         minSize = AudioRecord.getMinBufferSize(8000, RECORDER_CHANNELS, AudioFormat.ENCODING_PCM_16BIT);
         ar = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000, RECORDER_CHANNELS, AudioFormat.ENCODING_PCM_16BIT, minSize);
-        Log.v("ar log", String.valueOf(ar));
-        ar.startRecording();
+        mp = MediaPlayer.create(this, R.raw.a1);   //change to default blank sound!!!!!!!!!!!!!!!!!!!!!!!!
+        mp3_file = R.raw.a1;
 
         // get intent
         Intent intent = getIntent();
         Log.v("MICROPHONE_CLASS", "microphone activity starting!!");
         isBlowing();
     }
-
 
     public void startButton(View view) {
 
@@ -343,29 +335,27 @@ public class FreePlay extends AppCompatActivity {
 
     public boolean isBlowingValue() {
         boolean recorder = true;
-
         short[] buffer = new short[minSize];
-        Log.v("ar log", String.valueOf(ar));
 
+        ar.startRecording();
         while(recorder)
         {
             determine_note();
             ar.read(buffer, 0, minSize);
             for (short s : buffer)
             {
-                if (Math.abs(s) > 17000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
+                if (Math.abs(s) > 27000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
                 {
                     int blow_value = Math.abs(s);
-                    //System.out.println("Blow Value="+blow_value);
-                    Log.v("mic_val","Blow Value"+blow_value);
+                    System.out.println("Blow Value="+blow_value);
                     ar.stop();
-                    recorder=false;
-                    if(mp.isPlaying()){
-                        mp.stop();
-                    }
+                    recorder = false;
+
                     mp.release();
                     mp = MediaPlayer.create(this, mp3_file);
                     mp.start();
+
+
                     return true;
 
                 }
@@ -375,20 +365,19 @@ public class FreePlay extends AppCompatActivity {
 
     }
 
-    public void isBlowing() {
+    public boolean isBlowing() {
         Log.v("MICROPHONE_INPUT", "***RECORDING STARTED***");
-
 
         recordingThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true) {
-                    //blowDetected = false;
-                    Log.v("mic", "is blowing is " + isBlowingValue());
+                    Log.v("mic", "is blowing is" + isBlowingValue());
                 }
             }
         });
         recordingThread.start();
+        return blowDetected;
     }
 
     public void determine_note(){
@@ -548,4 +537,3 @@ public class FreePlay extends AppCompatActivity {
 
     }
 }
-
