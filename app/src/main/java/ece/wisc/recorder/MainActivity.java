@@ -24,4 +24,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FreePlay.class);
         startActivity(intent);
     }
+
+    public void learnButton(View view) {
+        // go into learn to play mode
+        Intent intent = new Intent(this, LearnToPlay.class);
+        startActivity(intent);
+    }
 }

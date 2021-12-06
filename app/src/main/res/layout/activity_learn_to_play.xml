@@ -13,54 +13,33 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="34sp" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="305dp"
-            android:layout_height="65dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/recorder" />
-
         <Button
             android:id="@+id/button3"
-            android:layout_width="200dp"
-            android:layout_height="66dp"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:onClick="freePlayButton"
-            android:text="@string/free_play"
+            android:text="Hot Cross Buns"
             android:textSize="24sp" />
 
         <Button
-            android:layout_width="200dp"
-            android:layout_height="66dp"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:onClick="learnButton"
-            android:text="@string/play_along"
+            android:text="Twinkle Twinkle Little Star"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="200dp"
-            android:layout_height="66dp"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Recordings"
+            android:text="Mary Had a Little Lamb"
             android:textSize="24sp" />
 
     </LinearLayout>
