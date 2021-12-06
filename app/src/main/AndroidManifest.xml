@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recorder">
         <activity
+            android:name=".PlayAlong"
+            android:exported="true" />
+        <activity
             android:name=".LearnToPlay"
             android:exported="true" />
         <activity
