@@ -62,7 +62,7 @@ public class PlayAlong extends AppCompatActivity {
     private int R4_2_b = R.drawable.right_button;
     private int notes_played;
     public boolean L1, L2, L3, L4, L4_2, R1, R2, R3, R3_2, R4, R4_2;
-    public Integer mp3_file;
+    public Integer mp3_file = R.raw.a1;
 
     private String[] song;
     public String note = "";
@@ -447,6 +447,19 @@ public class PlayAlong extends AppCompatActivity {
                         if (note.equals(noteInSong)) {
                             notes.remove();
                             unhighlightNote();
+
+                            // play the note here!!!
+//                            if(!mp.isPlaying()) {
+//                                mp.release();
+//                                mp = MediaPlayer.create(PlayAlong.this, mp3_file);
+//                                mp.start();
+//                            }
+
+                            try {
+                                Thread.sleep(250);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                         prevNote = noteInSong;
 
@@ -538,7 +551,6 @@ public class PlayAlong extends AppCompatActivity {
     }
 
     public void determineNote(){
-        Log.v("determine note", "determine note");
         determiningThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -562,7 +574,7 @@ public class PlayAlong extends AppCompatActivity {
                         note = "c";
                     } else if (d) {
                         mp3_file = R.raw.d1;
-                        note = "c";
+                        note = "d";
                     } else if (e) {
                         mp3_file = R.raw.e1;
                         note = "e";
