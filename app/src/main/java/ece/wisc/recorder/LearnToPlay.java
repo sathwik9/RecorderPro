@@ -28,32 +28,37 @@ public class LearnToPlay extends AppCompatActivity {
 
     public void hotCrossBuns(View view) {
         Intent intent = new Intent(this, PlayAlong.class);
-        startActivity(intent);
+
         intent.putExtra("song", buns);
+        startActivity(intent);
     }
 
     public void twinkle(View view) {
         Intent intent = new Intent(this, PlayAlong.class);
-        startActivity(intent);
+
         intent.putExtra("song", twinkle);
+        startActivity(intent);
     }
 
     public void maryLamb(View view) {
         Intent intent = new Intent(this, PlayAlong.class);
-        startActivity(intent);
+
         intent.putExtra("song", mary);
+        startActivity(intent);
     }
 
     public void babyShark(View view) {
         Intent intent = new Intent(this, PlayAlong.class);
-        startActivity(intent);
+
         intent.putExtra("song", shark);
+        startActivity(intent);
     }
 
     public void gentlySleep(View view) {
         Intent intent = new Intent(this, PlayAlong.class);
-        startActivity(intent);
+
         intent.putExtra("song", sleep);
+        startActivity(intent);
     }
 
 }

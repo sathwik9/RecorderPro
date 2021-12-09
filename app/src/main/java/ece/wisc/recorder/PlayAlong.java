@@ -23,6 +23,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Locale;
+import java.util.Queue;
+
 public class PlayAlong extends AppCompatActivity {
 
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
@@ -34,8 +39,12 @@ public class PlayAlong extends AppCompatActivity {
     private int minSize = 0;
 
     private boolean isRecording = true;
-    private Thread recordingThread = null;
     private boolean blowDetected = false;
+
+    private Thread recordingThread = null;
+    private Thread determiningThread = null;
+    private Thread playingThread = null;
+
 
     MediaPlayer mp;
     TextView note_being_played;
@@ -52,8 +61,12 @@ public class PlayAlong extends AppCompatActivity {
     private int R4_b = R.drawable.right_button;
     private int R4_2_b = R.drawable.right_button;
     private int notes_played;
-    private boolean L1, L2, L3, L4, L4_2, R1, R2, R3, R3_2, R4, R4_2;
-    private Integer mp3_file;
+    public boolean L1, L2, L3, L4, L4_2, R1, R2, R3, R3_2, R4, R4_2;
+    public Integer mp3_file;
+
+    private String[] song;
+    public String note = "";
+    private Queue<String> notes = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +92,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Left1.setImageResource(R.drawable.pushed_button);
+                        // Left1.setImageResource(R.drawable.pushed_button);
                         L1 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left1.setImageResource(L1_b);
+                        // Left1.setImageResource(L1_b);
                         L1 = false;
                         break;
                     }
@@ -98,12 +111,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Left2.setImageResource(R.drawable.pushed_button);
+                        // Left2.setImageResource(R.drawable.pushed_button);
                         L2 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left2.setImageResource(L2_b);
+                        // Left2.setImageResource(L2_b);
                         L2 = false;
                         break;
                     }
@@ -117,12 +130,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Left3.setImageResource(R.drawable.pushed_button);
+                        // Left3.setImageResource(R.drawable.pushed_button);
                         L3 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left3.setImageResource(L3_b);
+                        // Left3.setImageResource(L3_b);
                         L3 = false;
                         break;
                     }
@@ -136,12 +149,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Left4.setImageResource(R.drawable.pushed_button);
+                        // Left4.setImageResource(R.drawable.pushed_button);
                         L4 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left4.setImageResource(L4_b);
+                        // Left4.setImageResource(L4_b);
                         L4 = false;
                         break;
                     }
@@ -155,12 +168,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Left4_2.setImageResource(R.drawable.pushed_button);
+                        // Left4_2.setImageResource(R.drawable.pushed_button);
                         L4_2 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left4_2.setImageResource(L4_2_b);
+                        // Left4_2.setImageResource(L4_2_b);
                         L4_2 = false;
                         break;
                     }
@@ -174,12 +187,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Right1.setImageResource(R.drawable.pushed_button);
+                        // Right1.setImageResource(R.drawable.pushed_button);
                         R1 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right1.setImageResource(R1_b);
+                        // Right1.setImageResource(R1_b);
                         R1 = false;
                         break;
                     }
@@ -193,12 +206,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Right2.setImageResource(R.drawable.pushed_button);
+                        // Right2.setImageResource(R.drawable.pushed_button);
                         R2 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right2.setImageResource(R2_b);
+                        // Right2.setImageResource(R2_b);
                         R2 = false;
                         break;
                     }
@@ -212,12 +225,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Right3.setImageResource(R.drawable.pushed_button);
+                        // Right3.setImageResource(R.drawable.pushed_button);
                         R3 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right3.setImageResource(R3_b);
+                        // Right3.setImageResource(R3_b);
                         R3 = false;
                         break;
                     }
@@ -231,12 +244,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Right3_2.setImageResource(R.drawable.pushed_button);
+                        // Right3_2.setImageResource(R.drawable.pushed_button);
                         R3_2 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right3_2.setImageResource(R3_2_b);
+                        // Right3_2.setImageResource(R3_2_b);
                         R3_2 = false;
                         break;
                     }
@@ -250,12 +263,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Right4.setImageResource(R.drawable.pushed_button);
+                        // Right4.setImageResource(R.drawable.pushed_button);
                         R4 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right4.setImageResource(R4_b);
+                        // Right4.setImageResource(R4_b);
                         R4 = false;
                         break;
                     }
@@ -269,12 +282,12 @@ public class PlayAlong extends AppCompatActivity {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 switch (arg1.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        Right4_2.setImageResource(R.drawable.pushed_button);
+                        // Right4_2.setImageResource(R.drawable.pushed_button);
                         R4_2 = true;
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right4_2.setImageResource(R4_2_b);
+                        // Right4_2.setImageResource(R4_2_b);
                         R4_2 = false;
                         break;
                     }
@@ -302,10 +315,19 @@ public class PlayAlong extends AppCompatActivity {
         mp3_file = R.raw.a1;
 
         // get intent
-        Intent intent = getIntent();
-        Log.v("MICROPHONE_CLASS", "microphone activity starting!!");
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            song = extras.getStringArray("song");
+            Log.v("SONG PASSED", Arrays.deepToString(song));
+        }
+
+        // put notes into queue
+        for (int i = 0; i < song.length; ++i) {
+            notes.add(song[i]);
+        }
+
         notes_played = 0;
-        isBlowing();
+        playSong();
     }
 
     public void startButton(View view) {
@@ -353,7 +375,7 @@ public class PlayAlong extends AppCompatActivity {
         ar.startRecording();
         while(recorder)
         {
-            determine_note();
+            // determine_note();
             ar.read(buffer, 0, minSize);
             for (short s : buffer)
             {
@@ -375,7 +397,6 @@ public class PlayAlong extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                     return true;
                 }
             }
@@ -399,181 +420,160 @@ public class PlayAlong extends AppCompatActivity {
         return blowDetected;
     }
 
-    public void determine_note(){
-        if(L1 && L2 && L3  && L4  && !L4_2 &&
-                R1 && R2 && R3 && R4 && !R3_2 && !R4_2){
-            note_being_played.setText("C \n1");
-            //mp = MediaPlayer.create(this, R.id.left);
-            mp3_file = R.raw.c1;
-        }
-        else if(L1 && L2 && L3  && L4  && !L4_2 &&
-                R1 && R2 && R3 && !R4 && !R3_2 && R4_2){
-            note_being_played.setText("C# \n1");
-            mp3_file = R.raw.c_1;
-        }
-        else if(L1 && L2 && L3  && L4  && !L4_2 &&
-                R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("D \n1");
-            mp3_file = R.raw.d1;
-        }
-        else if(L1 && L2 && L3  && L4  && !L4_2 &&
-                R1 && R2 && !R3 && !R4 && R3_2 && !R4_2){
-            note_being_played.setText("D# \n1");
-            mp3_file = R.raw.d_1;
-        }
-        else if(L1 && L2 && L3  && L4  && !L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("E \n1");
-            mp3_file = R.raw.e1;
-        }
-        else if(L1 && L2 && L3  && L4  && !L4_2 &&
-                R1 && !R2 && R3 && R4 && !R3_2 && !R4_2){
-            note_being_played.setText("F \n1");
-            mp3_file = R.raw.f1;
-        }
-        else if(L1 && L2 && L3  && L4  && !L4_2 &&
-                !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("F# \n1");
-            mp3_file = R.raw.f_1;
-        }
-        else if(L1 && L2 && L3  && L4  && !L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("G \n1");;
-            mp3_file = R.raw.g1;
-        }
-        else if(L1 && L2 && !L3  && L4  && !L4_2 &&
-                R1 && R2 && !R3 && !R4 && R3_2 && !R4_2){
-            note_being_played.setText("G# \n1");
-            mp3_file = R.raw.g_1;
-        }
-        else if(L1 && L2 && !L3  && L4  && !L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("A \n1");
-            mp3_file = R.raw.a1;
-        }
-        else if(L1 && !L2 && L3  && L4  && !L4_2 &&
-                !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("A# \n1");
-            mp3_file = R.raw.a_1;
-        }
-        else if(L1 && !L2 && !L3  && L4  && !L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("B \n1");
-            mp3_file = R.raw.b1;
-        }
-        else if(!L1 && L2 && !L3  && L4  && !L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("C \n2");
-            mp3_file = R.raw.c2;
-        }
-        else if(L1 && L2 && !L3  && !L4  && !L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("C# \n2");
-            mp3_file = R.raw.c_2;
-        }
-        else if(!L1 && L2 && !L3  && !L4  && !L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("D \n2");
-            mp3_file = R.raw.d2;
-        }
-        else if(!L1 && L2 && L3  && !L4  && !L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("D# \n2");
-            mp3_file = R.raw.d_2;
-        }
-        //there are another 16 notes but they use the L4_2 fingering and we don't have that available
-        // with our current button layout
-        else if(L1 && !L2 && L3  && !L4  && L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("E \n2");
-            mp3_file = R.raw.e2;
-        }
-        else if(L1 && L2 && L3  && !L4  && L4_2 &&
-                R1 && !R2 && R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("F \n2");
-            mp3_file = R.raw.f2;
-        }
-        else if(L1 && L2 && L3  && !L4  && L4_2 &&
-                !R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("F# \n2");
-            mp3_file = R.raw.f_2;
-        }
-        else if(L1 && L2 && L3  && !L4  && L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("G \n2");
-            mp3_file = R.raw.g2;
-        }
-        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
-                R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("G# \n2");
-            mp3_file = R.raw.g_2;
-        }
-        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("A \n2");
-            mp3_file = R.raw.a2;
-        }
-        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
-                !R1 && R2 && R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("A# \n2");
-            mp3_file = R.raw.a_2;
-        }
-        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("B \n2");
-            mp3_file = R.raw.b2;
-        }
-        else if(!L1 && !L2 && !L3  && !L4  && L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("C \n3");
-            mp3_file = R.raw.d_2;
-        }
-        else if(L1 && !L2 && !L3  && !L4  && L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && R4_2){
-            note_being_played.setText("D \n3");
-            mp3_file = R.raw.c3;
-        }
-        else if(L1 && !L2 && L3  && !L4  && L4_2 &&
-                !R1 && R2 && R3 && !R4 && !R3_2 && R4_2){
-            note_being_played.setText("D# \n3");
-            mp3_file = R.raw.d_3;
-        }
-        else if(L1 && L2 && !L3  && !L4  && L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){  //same button layout as B_2
-            note_being_played.setText("F# \n3");            //might be an issue, but idk
-            mp3_file = R.raw.f_3;
-        }
-        else if(L1 && !L2 && !L3  && !L4  && L4_2 &&
-                R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("G \n3");
-            mp3_file = R.raw.g3;
-        }
-        else{
-            note_being_played.setText("-\n-");
-        }
-        //can't use the C#, E, or F notes in third octave since they use the knee hole.
+    public void playSong() {
+        isBlowing();
+        determineNote();
 
+        playingThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                    // loop through song array and for each note wait until the correct button combo + microphone is played before you move to next note
+                    String noteInSong = "";
+                    String prevNote = "";
+                    while (!notes.isEmpty()) {
+
+                        // note to be played
+                        noteInSong = notes.peek();
+
+                        if (prevNote != noteInSong) {
+                            // display the note that needs to be played
+                            note_being_played.setText(noteInSong.toUpperCase() + "\n1");
+
+                            // highlight the buttons that need to be played for this note
+                            highlightNote(noteInSong);
+                        }
+
+                        // determine note user is pressing
+                        if (note.equals(noteInSong)) {
+                            notes.remove();
+                            unhighlightNote();
+                        }
+                        prevNote = noteInSong;
+
+                        // unhighlight the note buttons now that they're pressed
+                        // unhighlightNote();
+
+                        // wait until that button combo is pressed + blow detected to move to next note
+                    }
+                }
+        });
+
+        playingThread.start();
 
     }
 
-    public void set_buttons_to_be_played(String note){
-        if(note == "a"){
+    private void unhighlightNote() {
+        Left1.setImageResource(R.drawable.left_button);
+        Left2.setImageResource(R.drawable.left_button);
+        Left3.setImageResource(R.drawable.left_button);
+        Left4.setImageResource(R.drawable.left_button);
+        Right1.setImageResource(R.drawable.right_button);
+        Right2.setImageResource(R.drawable.right_button);
+        Right3.setImageResource(R.drawable.right_button);
+        Right4.setImageResource(R.drawable.right_button);
+    }
 
-        }
-        else if(note == "b"){
-
-        }
-        else if(note == "c"){
-
-        }
-        else if(note == "d"){
-
-        }
-        else if(note == "e"){
-
-        }
-        else if(note == "f"){
-
+    private void highlightNote(String playNote) {
+        switch(playNote) {
+            case "a":
+                Left1.setImageResource(R.drawable.pushed_button);
+                Left2.setImageResource(R.drawable.pushed_button);
+                Left4.setImageResource(R.drawable.pushed_button);
+                break;
+            case "b":
+                Left1.setImageResource(R.drawable.pushed_button);
+                Left4.setImageResource(R.drawable.pushed_button);
+                break;
+            case "c":
+                Left1.setImageResource(R.drawable.pushed_button);
+                Left2.setImageResource(R.drawable.pushed_button);
+                Left3.setImageResource(R.drawable.pushed_button);
+                Left4.setImageResource(R.drawable.pushed_button);
+                Right1.setImageResource(R.drawable.pushed_button);
+                Right2.setImageResource(R.drawable.pushed_button);
+                Right3.setImageResource(R.drawable.pushed_button);
+                Right4.setImageResource(R.drawable.pushed_button);
+                break;
+            case "d":
+                Left1.setImageResource(R.drawable.pushed_button);
+                Left2.setImageResource(R.drawable.pushed_button);
+                Left3.setImageResource(R.drawable.pushed_button);
+                Left4.setImageResource(R.drawable.pushed_button);
+                Right1.setImageResource(R.drawable.pushed_button);
+                Right2.setImageResource(R.drawable.pushed_button);
+                Right3.setImageResource(R.drawable.pushed_button);
+                break;
+            case "e":
+                Left1.setImageResource(R.drawable.pushed_button);
+                Left2.setImageResource(R.drawable.pushed_button);
+                Left3.setImageResource(R.drawable.pushed_button);
+                Left4.setImageResource(R.drawable.pushed_button);
+                Right1.setImageResource(R.drawable.pushed_button);
+                Right2.setImageResource(R.drawable.pushed_button);
+                break;
+            case "f":
+                Left1.setImageResource(R.drawable.pushed_button);
+                Left2.setImageResource(R.drawable.pushed_button);
+                Left3.setImageResource(R.drawable.pushed_button);
+                Left4.setImageResource(R.drawable.pushed_button);
+                Right1.setImageResource(R.drawable.pushed_button);
+                Right3.setImageResource(R.drawable.pushed_button);
+                Right4.setImageResource(R.drawable.pushed_button);
+                break;
+            case "g":
+                Left1.setImageResource(R.drawable.pushed_button);
+                Left2.setImageResource(R.drawable.pushed_button);
+                Left3.setImageResource(R.drawable.pushed_button);
+                Left4.setImageResource(R.drawable.pushed_button);
+                break;
+            default:
+                // nothing is highlighted
         }
     }
+
+    public void determineNote(){
+        Log.v("determine note", "determine note");
+        determiningThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    boolean a = L1 && L2 && !L3 && L4 && !L4_2 && !R1 && !R2 && !R3 && !R3_2 && !R4 && !R4_2;
+                    boolean b = L1 && !L2 && !L3 && L4 && !L4_2 && !R1 && !R2 && !R3 && !R3_2 && !R4 && !R4_2;
+                    boolean c = L1 && L2 && L3 && L4 && !L4_2 && R1 && R2 && R3 && !R3_2 && R4 && !R4_2;
+                    boolean d = L1 && L2 && L3 && L4 && !L4_2 && R1 && R2 && R3 && !R3_2 && !R4 && !R4_2;
+                    boolean e = L1 && L2 && L3 && L4 && !L4_2 && R1 && R2 && !R3 && !R3_2 && !R4 && !R4_2;
+                    boolean f = L1 && L2 && L3 && L4 && !L4_2 && R1 && !R2 && R3 && !R3_2 && !R4 && !R4_2;
+                    boolean g = L1 && L2 && L3 && L4 && !L4_2 && !R1 && !R2 && !R3 && !R3_2 && !R4 && !R4_2;
+
+                    if (a) {
+                        mp3_file = R.raw.a1;
+                        note = "a";
+                    } else if (b) {
+                        mp3_file = R.raw.b1;
+                        note = "b";
+                    } else if (c) {
+                        mp3_file = R.raw.c1;
+                        note = "c";
+                    } else if (d) {
+                        mp3_file = R.raw.d1;
+                        note = "c";
+                    } else if (e) {
+                        mp3_file = R.raw.e1;
+                        note = "e";
+                    } else if (f) {
+                        mp3_file = R.raw.f1;
+                        note = "f";
+                    } else if (g) {
+                        mp3_file = R.raw.g1;
+                        note = "g";
+                    } else {
+                        // no valid note played
+                        note = "";
+                    }
+                }
+            }
+        });
+        determiningThread.start();
+    }
+
 }
