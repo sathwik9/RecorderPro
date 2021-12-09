@@ -40,6 +40,18 @@ public class PlayAlong extends AppCompatActivity {
     MediaPlayer mp;
     TextView note_being_played;
     ImageView Left1, Left2, Left3, Left4, Left4_2, Right1, Right2, Right3, Right4, Right3_2, Right4_2;
+    private int L1_b = R.drawable.left_button;
+    private int L2_b = R.drawable.left_button;
+    private int L3_b = R.drawable.left_button;
+    private int L4_b = R.drawable.left_button;
+    private int L4_2_b = R.drawable.left_button;
+    private int R1_b = R.drawable.right_button;
+    private int R2_b = R.drawable.right_button;
+    private int R3_b = R.drawable.right_button;
+    private int R3_2_b = R.drawable.right_button;
+    private int R4_b = R.drawable.right_button;
+    private int R4_2_b = R.drawable.right_button;
+    private int notes_played;
     private boolean L1, L2, L3, L4, L4_2, R1, R2, R3, R3_2, R4, R4_2;
     private Integer mp3_file;
 
@@ -72,7 +84,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left1.setImageResource(R.drawable.left_button);
+                        Left1.setImageResource(L1_b);
                         L1 = false;
                         break;
                     }
@@ -91,7 +103,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left2.setImageResource(R.drawable.left_button);
+                        Left2.setImageResource(L2_b);
                         L2 = false;
                         break;
                     }
@@ -110,7 +122,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left3.setImageResource(R.drawable.left_button);
+                        Left3.setImageResource(L3_b);
                         L3 = false;
                         break;
                     }
@@ -129,7 +141,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left4.setImageResource(R.drawable.left_button);
+                        Left4.setImageResource(L4_b);
                         L4 = false;
                         break;
                     }
@@ -148,7 +160,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Left4_2.setImageResource(R.drawable.left_button);
+                        Left4_2.setImageResource(L4_2_b);
                         L4_2 = false;
                         break;
                     }
@@ -167,7 +179,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right1.setImageResource(R.drawable.right_button);
+                        Right1.setImageResource(R1_b);
                         R1 = false;
                         break;
                     }
@@ -186,7 +198,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right2.setImageResource(R.drawable.right_button);
+                        Right2.setImageResource(R2_b);
                         R2 = false;
                         break;
                     }
@@ -205,7 +217,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right3.setImageResource(R.drawable.right_button);
+                        Right3.setImageResource(R3_b);
                         R3 = false;
                         break;
                     }
@@ -224,7 +236,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right3_2.setImageResource(R.drawable.right_button);
+                        Right3_2.setImageResource(R3_2_b);
                         R3_2 = false;
                         break;
                     }
@@ -243,7 +255,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right4.setImageResource(R.drawable.right_button);
+                        Right4.setImageResource(R4_b);
                         R4 = false;
                         break;
                     }
@@ -262,7 +274,7 @@ public class PlayAlong extends AppCompatActivity {
                         break;
                     }
                     case MotionEvent.ACTION_UP:{
-                        Right4_2.setImageResource(R.drawable.right_button);
+                        Right4_2.setImageResource(R4_2_b);
                         R4_2 = false;
                         break;
                     }
@@ -292,6 +304,7 @@ public class PlayAlong extends AppCompatActivity {
         // get intent
         Intent intent = getIntent();
         Log.v("MICROPHONE_CLASS", "microphone activity starting!!");
+        notes_played = 0;
         isBlowing();
     }
 
@@ -379,6 +392,7 @@ public class PlayAlong extends AppCompatActivity {
                     isBlowingValue();
                     // Log.v("mic", "is blowing is" + isBlowingValue());
                 }
+                //display done screen?????????????????!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!
             }
         });
         recordingThread.start();
@@ -510,23 +524,23 @@ public class PlayAlong extends AppCompatActivity {
             mp3_file = R.raw.b2;
         }
         else if(!L1 && !L2 && !L3  && !L4  && L4_2 &&
-                !R1 && !R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText(" \n3");
+                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
+            note_being_played.setText("C \n3");
             mp3_file = R.raw.d_2;
         }
         else if(L1 && !L2 && !L3  && !L4  && L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("C \n3");
+                R1 && R2 && !R3 && !R4 && !R3_2 && R4_2){
+            note_being_played.setText("D \n3");
             mp3_file = R.raw.c3;
         }
         else if(L1 && !L2 && L3  && !L4  && L4_2 &&
-                R1 && !R2 && R3 && !R4 && !R3_2 && R4_2){
+                !R1 && R2 && R3 && !R4 && !R3_2 && R4_2){
             note_being_played.setText("D# \n3");
             mp3_file = R.raw.d_3;
         }
         else if(L1 && L2 && !L3  && !L4  && L4_2 &&
-                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){
-            note_being_played.setText("F# \n3");
+                R1 && R2 && !R3 && !R4 && !R3_2 && !R4_2){  //same button layout as B_2
+            note_being_played.setText("F# \n3");            //might be an issue, but idk
             mp3_file = R.raw.f_3;
         }
         else if(L1 && !L2 && !L3  && !L4  && L4_2 &&
@@ -540,5 +554,26 @@ public class PlayAlong extends AppCompatActivity {
         //can't use the C#, E, or F notes in third octave since they use the knee hole.
 
 
+    }
+
+    public void set_buttons_to_be_played(String note){
+        if(note == "a"){
+
+        }
+        else if(note == "b"){
+
+        }
+        else if(note == "c"){
+
+        }
+        else if(note == "d"){
+
+        }
+        else if(note == "e"){
+
+        }
+        else if(note == "f"){
+
+        }
     }
 }
