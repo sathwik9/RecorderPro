@@ -455,6 +455,12 @@ public class PlayAlong extends AppCompatActivity {
 
                         // wait until that button combo is pressed + blow detected to move to next note
                     }
+
+                Log.v("done", "completed song!!");
+
+                Intent intent = new Intent(getBaseContext(), CompletedSong.class);
+                intent.putExtra("song", song);
+                startActivity(intent);
                 }
         });
 
