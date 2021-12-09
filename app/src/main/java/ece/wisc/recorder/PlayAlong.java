@@ -386,17 +386,17 @@ public class PlayAlong extends AppCompatActivity {
                     ar.stop();
                     recorder = false;
 
-                    if(!mp.isPlaying()) {
-                        mp.release();
-                        mp = MediaPlayer.create(this, mp3_file);
-                        mp.start();
-                    }
+//                    if(!mp.isPlaying()) {
+//                        mp.release();
+//                        mp = MediaPlayer.create(this, mp3_file);
+//                        mp.start();
+//                    }
 
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        Thread.sleep(500);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
                     return true;
                 }
             }
@@ -449,14 +449,14 @@ public class PlayAlong extends AppCompatActivity {
                             unhighlightNote();
 
                             // play the note here!!!
-//                            if(!mp.isPlaying()) {
-//                                mp.release();
-//                                mp = MediaPlayer.create(PlayAlong.this, mp3_file);
-//                                mp.start();
-//                            }
+                            if(!mp.isPlaying()) {
+                                mp.release();
+                                mp = MediaPlayer.create(PlayAlong.this, mp3_file);
+                                mp.start();
+                            }
 
                             try {
-                                Thread.sleep(250);
+                                Thread.sleep(500);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
