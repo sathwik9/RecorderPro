@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/Note_to_be_played"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_width="119dp"
+        android:layout_height="166dp"
         android:layout_marginStart="10dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="A"
-        android:textSize="96sp"
+        android:textSize="60sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start" />
 
@@ -74,7 +74,7 @@
         android:id="@+id/Left4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/side"
+        android:layout_marginStart="100dp"
         android:layout_marginBottom="@dimen/margin"
         app:layout_constraintBottom_toTopOf="@+id/Left3"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
         android:id="@+id/Left4_2"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="38dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="304dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -167,7 +167,7 @@
         android:id="@+id/Right4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/side"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="@dimen/margin"
         app:layout_constraintBottom_toTopOf="@+id/Right3"
         app:layout_constraintEnd_toEndOf="parent"

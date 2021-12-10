@@ -564,25 +564,25 @@ public class PlayAlong extends AppCompatActivity {
                     boolean g = L1 && L2 && L3 && L4 && !L4_2 && !R1 && !R2 && !R3 && !R3_2 && !R4 && !R4_2;
 
                     if (a) {
-                        mp3_file = R.raw.a1;
+                        mp3_file = R.raw.a2;
                         note = "a";
                     } else if (b) {
-                        mp3_file = R.raw.b1;
+                        mp3_file = R.raw.b2;
                         note = "b";
                     } else if (c) {
-                        mp3_file = R.raw.c1;
+                        mp3_file = R.raw.c2;
                         note = "c";
                     } else if (d) {
-                        mp3_file = R.raw.d1;
+                        mp3_file = R.raw.d2;
                         note = "d";
                     } else if (e) {
-                        mp3_file = R.raw.e1;
+                        mp3_file = R.raw.e2;
                         note = "e";
                     } else if (f) {
-                        mp3_file = R.raw.f1;
+                        mp3_file = R.raw.f2;
                         note = "f";
                     } else if (g) {
-                        mp3_file = R.raw.g1;
+                        mp3_file = R.raw.g2;
                         note = "g";
                     } else {
                         // no valid note played
