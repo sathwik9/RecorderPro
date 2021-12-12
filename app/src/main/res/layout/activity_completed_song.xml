@@ -23,29 +23,31 @@
             android:paddingVertical="20dp"
             android:text="congrats you completed the song!!"
             android:textAlignment="center"
-            android:textSize="34sp" />
+            android:textAllCaps="true"
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/playAgain"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
+            android:onClick="playAgain"
             android:text="play again"
-            android:textSize="16sp"
-            android:onClick="playAgain"/>
+            android:textSize="34sp" />
 
         <Button
             android:id="@+id/home"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
+            android:onClick="home"
             android:text="home"
-            android:textSize="16sp"
-            android:onClick="home"/>
+            android:textSize="34sp" />
 
 
     </LinearLayout>
