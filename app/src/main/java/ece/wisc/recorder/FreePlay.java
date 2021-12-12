@@ -344,7 +344,7 @@ public class FreePlay extends AppCompatActivity {
             ar.read(buffer, 0, minSize);
             for (short s : buffer)
             {
-                if (Math.abs(s) > 27000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
+                if (Math.abs(s) > 30000)   //DETECT VOLUME (IF I BLOW IN THE MIC)
                 {
                     int blow_value = Math.abs(s);
                     // System.out.println("Blow Value="+blow_value);
