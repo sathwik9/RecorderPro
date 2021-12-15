@@ -7,4 +7,6 @@ public class Note {
         mp3_file = set_mp3;
         time = set_time;
     }
+
+    public Integer getMp3_file(){return mp3_file;}
 }
