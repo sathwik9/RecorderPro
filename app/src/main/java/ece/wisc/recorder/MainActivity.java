@@ -81,7 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == FreePlay.RESULT_OK) {
                     Bundle extras = data.getBundleExtra("songs");
                     if (extras != null) {
-                        recorded_songs = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
+                        ArrayList<Record> newSongs = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
+                        for(int s = 0; s < newSongs.size(); s ++){
+                            recorded_songs.add(newSongs.get(s));
+                        }
                     }
                     else {
                         recorded_songs = new ArrayList<Record>();
