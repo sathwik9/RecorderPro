@@ -31,9 +31,7 @@ public class Recordings extends AppCompatActivity {
         setContentView(R.layout.activity_recordings);
 
         // Put initial data into the word list.
-        for (int i = 0; i < 20; i++) {
-            mSongList.addLast("Song " + i);
-        }
+
         // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
 // Create an adapter and supply the data to be displayed.
@@ -44,19 +42,4 @@ public class Recordings extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

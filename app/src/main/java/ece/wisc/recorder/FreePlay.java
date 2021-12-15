@@ -303,6 +303,14 @@ public class FreePlay extends AppCompatActivity {
         isBlowing();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("songs", recorded_songs);
+        startActivity(intent);
+    }
+
     public void startButton(View view) {
         saving = true;
         currRecord = new Record();

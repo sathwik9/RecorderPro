@@ -37,7 +37,7 @@ public class SongListAdapter extends
 // Use that to access the affected item in mSongList.
             Record element = mSongList.get(mPosition);
 // Change the Song in the mSongList.
-            mSongList.set(mPosition, "Clicked! " + element.title);
+            mSongList.set(mPosition, element);
 // Notify the adapter, that the data has changed so it can
 // update the RecyclerView to display the data.
             mAdapter.notifyDataSetChanged();

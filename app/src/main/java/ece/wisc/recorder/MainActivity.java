@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ArrayList<Record> recorded_songs = new ArrayList<Record>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
     public void recordingsButton(View view) {
         // go into playback of recordings
         Intent intent = new Intent(this, Recordings.class);
+
+        intent.putExtra("songs", recorded_songs);
+
         startActivity(intent);
+
     }
 }
