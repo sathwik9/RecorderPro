@@ -22,6 +22,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class FreePlay extends AppCompatActivity {
 
@@ -36,6 +39,11 @@ public class FreePlay extends AppCompatActivity {
     private boolean isRecording = true;
     private Thread recordingThread = null;
     private boolean blowDetected = false;
+
+    private Record currRecord = null;
+    private ArrayList<Record> recorded_songs = new ArrayList<Record>();
+    private boolean saving = false;
+
 
     MediaPlayer mp;
     TextView note_being_played;
@@ -296,14 +304,30 @@ public class FreePlay extends AppCompatActivity {
     }
 
     public void startButton(View view) {
-
-
+        saving = true;
+        currRecord = new Record();
+        Toast.makeText(FreePlay.this, "Recording Started",
+                Toast.LENGTH_SHORT).show();
     }
     public void pauseButton(View view) {
-
-
+        if(currRecord != null) {
+            if (saving == false) {
+                saving = true;
+                Toast.makeText(FreePlay.this, "Recording Resumed",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                saving = false;
+                Toast.makeText(FreePlay.this, "Recording Paused",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
     }
     public void stopButton(View view) {
+        if(currRecord == null){
+            return;
+        }
+        saving = false;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(FreePlay.this);
         builder.setTitle("Save Song Recording");
 
@@ -319,6 +343,14 @@ public class FreePlay extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 String m_Text = input.getText().toString();
+                currRecord.setTitle(m_Text);
+                recorded_songs.add(currRecord);
+                currRecord = null;
+                Toast.makeText(FreePlay.this, "Recording Saved",
+                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(FreePlay.this, recorded_songs.toString(),
+                        Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -327,7 +359,12 @@ public class FreePlay extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+                currRecord = null;
+                Toast.makeText(FreePlay.this, "Recording Discarded",
+                        Toast.LENGTH_SHORT).show();
+                Log.v("Recording", recorded_songs.get(0).toString());
             }
+
         });
 
         builder.show();
@@ -355,6 +392,9 @@ public class FreePlay extends AppCompatActivity {
                         mp.release();
                         mp = MediaPlayer.create(this, mp3_file);
                         mp.start();
+                        if(saving) {
+                            currRecord.add_note(mp3_file);
+                        }
                     }
 
                     try {

@@ -30,4 +30,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LearnToPlay.class);
         startActivity(intent);
     }
+
+    public void recordingsButton(View view) {
+        // go into playback of recordings
+        Intent intent = new Intent(this, Recordings.class);
+        startActivity(intent);
+    }
 }

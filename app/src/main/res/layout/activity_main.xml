@@ -60,6 +60,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:fontFamily="sans-serif-smallcaps"
+            android:onClick="recordingsButton"
             android:text="Recordings"
             android:textSize="24sp" />
 
