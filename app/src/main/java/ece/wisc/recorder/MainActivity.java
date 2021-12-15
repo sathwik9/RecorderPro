@@ -3,6 +3,7 @@ package ece.wisc.recorder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Record> recorded_songs;
+    private int requestCodeChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,32 @@ public class MainActivity extends AppCompatActivity {
         Bundle arg = new Bundle();
         arg.putSerializable("ARRAYLIST", (Serializable) recorded_songs);
         intent.putExtra("songs", recorded_songs);
-        startActivity(intent);
+        //change the startActivity call so that a result will be returned when a song is recorded
+        //1 is the request code returned when the activity is properly finished
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (1) : {
+                if (resultCode == FreePlay.RESULT_OK) {
+                    Bundle extras = data.getBundleExtra("songs");
+                    if (extras != null) {
+                        recorded_songs = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
+                    }
+                    else {
+                        recorded_songs = new ArrayList<Record>();
+                        Record e = new Record();
+                        // e.add_note(R.id.);
+                        e.setTitle("p");
+                        recorded_songs.add(e);
+                    }
+                }
+                break;
+            }
+        }
     }
 
     public void learnButton(View view) {

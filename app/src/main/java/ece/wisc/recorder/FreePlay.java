@@ -364,9 +364,14 @@ public class FreePlay extends AppCompatActivity {
                 Toast.makeText(FreePlay.this, recorded_songs.toString(),
                         Toast.LENGTH_LONG).show();
 
+
+                //code to send song back to main activity?????
+                Intent resultIntent = new Intent();
                 Bundle arg = new Bundle();
                 arg.putSerializable("ARRAYLIST", (Serializable) recorded_songs);
-                intent.putExtra("songs", arg);
+                resultIntent.putExtra("songs", arg);
+                setResult(FreePlay.RESULT_OK, resultIntent);
+                finish();
 
             }
         });
