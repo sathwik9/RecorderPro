@@ -29,5 +29,7 @@ public class Record {
         return "Title: " + title + "Song: " + song;
     }
 
+    public ArrayList<Note> getSong(){return song;}
 
+    public long getStartTime(){return start_time;}
 }
