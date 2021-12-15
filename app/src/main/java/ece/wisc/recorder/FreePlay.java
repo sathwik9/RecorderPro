@@ -44,7 +44,7 @@ public class FreePlay extends AppCompatActivity {
     private Record currRecord = null;
     private ArrayList<Record> recorded_songs = new ArrayList<Record>();
     private boolean saving = false;
-
+    private Intent intent;
 
     MediaPlayer mp;
     TextView note_being_played;
@@ -56,6 +56,7 @@ public class FreePlay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_play);
+        intent = new Intent(this, MainActivity.class);
         Bundle extras = getIntent().getBundleExtra("songs");
         if (extras != null) {
             recorded_songs = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
@@ -312,10 +313,6 @@ public class FreePlay extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(this, MainActivity.class);
-        Bundle arg = new Bundle();
-        arg.putSerializable("ARRAYLIST", (Serializable) recorded_songs);
-        intent.putExtra("songs", arg);
         startActivity(intent);
     }
 
@@ -366,6 +363,10 @@ public class FreePlay extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 Toast.makeText(FreePlay.this, recorded_songs.toString(),
                         Toast.LENGTH_LONG).show();
+
+                Bundle arg = new Bundle();
+                arg.putSerializable("ARRAYLIST", (Serializable) recorded_songs);
+                intent.putExtra("songs", arg);
 
             }
         });

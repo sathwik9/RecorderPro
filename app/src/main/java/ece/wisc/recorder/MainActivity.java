@@ -24,13 +24,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Bundle extras = getIntent().getBundleExtra("songs");
+        Intent intent = getIntent();
+        Bundle extras = intent.getBundleExtra("songs");
         if (extras != null) {
             recorded_songs = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
         }
         else {
             recorded_songs = new ArrayList<Record>();
+            Record e = new Record();
+           // e.add_note(R.id.);
+            e.setTitle("p");
+            recorded_songs.add(e);
         }
+
+
         Toast.makeText(MainActivity.this, recorded_songs.toString(),
                 Toast.LENGTH_LONG).show();
     }
