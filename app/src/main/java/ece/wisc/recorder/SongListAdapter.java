@@ -9,14 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class SongListAdapter extends
         RecyclerView.Adapter<SongListAdapter.SongViewHolder> {
-    private final LinkedList<Record> mSongList;
+    private final ArrayList<Record> mSongList;
     private LayoutInflater mInflater;
     public SongListAdapter(Context context,
-                           LinkedList<Record> songList) {
+                           ArrayList<Record> songList) {
         mInflater = LayoutInflater.from(context);
         this.mSongList = songList;
     }

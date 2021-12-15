@@ -5,27 +5,42 @@ import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Record> recorded_songs = new ArrayList<Record>();
+    private ArrayList<Record> recorded_songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Bundle extras = getIntent().getBundleExtra("songs");
+        if (extras != null) {
+            recorded_songs = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
+        }
+        else {
+            recorded_songs = new ArrayList<Record>();
+        }
+        Toast.makeText(MainActivity.this, recorded_songs.toString(),
+                Toast.LENGTH_LONG).show();
     }
 
     public void freePlayButton(View view) {
         // go into free play mode
         Intent intent = new Intent(this, FreePlay.class);
+        Bundle arg = new Bundle();
+        arg.putSerializable("ARRAYLIST", (Serializable) recorded_songs);
+        intent.putExtra("songs", recorded_songs);
         startActivity(intent);
     }
 
@@ -38,8 +53,9 @@ public class MainActivity extends AppCompatActivity {
     public void recordingsButton(View view) {
         // go into playback of recordings
         Intent intent = new Intent(this, Recordings.class);
-
-        intent.putExtra("songs", recorded_songs);
+        Bundle arg = new Bundle();
+        arg.putSerializable("ARRAYLIST", (Serializable) recorded_songs);
+        intent.putExtra("songs", arg);
 
         startActivity(intent);
 

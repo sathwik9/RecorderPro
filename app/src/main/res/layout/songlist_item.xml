@@ -6,5 +6,5 @@
     android:padding="6dp">
     <TextView
         android:id="@+id/song"
-        style="@style/word_title" />
+        style="@style/song_title" />
 </LinearLayout>

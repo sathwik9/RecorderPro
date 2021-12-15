@@ -17,11 +17,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Recordings extends AppCompatActivity {
 
-    private final LinkedList<Record> mSongList = new LinkedList<>();
+    private ArrayList<Record> mSongList;
     private RecyclerView mRecyclerView;
     private SongListAdapter mAdapter;
 
@@ -29,8 +30,13 @@ public class Recordings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recordings);
-
-        // Put initial data into the word list.
+        Bundle extras = getIntent().getBundleExtra("songs");
+        if (extras != null) {
+            mSongList = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
+        }
+        else {
+            mSongList = new ArrayList<Record>();
+        }
 
         // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);

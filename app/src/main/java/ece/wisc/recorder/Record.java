@@ -1,8 +1,9 @@
 package ece.wisc.recorder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Record {
+public class Record implements Serializable {
     private ArrayList<Note> song;
     private long start_time;
     private String title;

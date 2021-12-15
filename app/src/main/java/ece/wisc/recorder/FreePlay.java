@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FreePlay extends AppCompatActivity {
@@ -55,7 +56,12 @@ public class FreePlay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_play);
-
+        Bundle extras = getIntent().getBundleExtra("songs");
+        if (extras != null) {
+            recorded_songs = (ArrayList<Record>) extras.getSerializable("ARRAYLIST");
+        } else {
+            recorded_songs = new ArrayList<Record>();
+        }
         note_being_played = findViewById(R.id.Note_to_be_played);
 
         Left1 = findViewById(R.id.Left1);
@@ -307,7 +313,9 @@ public class FreePlay extends AppCompatActivity {
     public void onBackPressed()
     {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("songs", recorded_songs);
+        Bundle arg = new Bundle();
+        arg.putSerializable("ARRAYLIST", (Serializable) recorded_songs);
+        intent.putExtra("songs", arg);
         startActivity(intent);
     }
 
