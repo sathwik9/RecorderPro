@@ -34,14 +34,32 @@ public class MainActivity extends AppCompatActivity {
         else {
             recorded_songs = new ArrayList<Record>();
             Record e = new Record();
-           // e.add_note(R.id.);
+
+            try {
+                e.add_note(R.raw.a1);
+                Thread.sleep(1000);
+                e.add_note(R.raw.b1);
+                Thread.sleep(1000);
+                e.add_note(R.raw.c1);
+                Thread.sleep(1000);
+                e.add_note(R.raw.d1);
+                Thread.sleep(1000);
+                e.add_note(R.raw.e1);
+                Thread.sleep(1000);
+                e.add_note(R.raw.f1);
+                Thread.sleep(1000);
+                e.add_note(R.raw.g1);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+
             e.setTitle("p");
             recorded_songs.add(e);
         }
 
 
-        Toast.makeText(MainActivity.this, recorded_songs.toString(),
-                Toast.LENGTH_LONG).show();
+        //Toast.makeText(MainActivity.this, recorded_songs.toString(),
+        //        Toast.LENGTH_LONG).show();
     }
 
     public void freePlayButton(View view) {

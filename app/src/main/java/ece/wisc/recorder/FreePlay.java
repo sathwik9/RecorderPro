@@ -320,7 +320,7 @@ public class FreePlay extends AppCompatActivity {
         saving = true;
         currRecord = new Record();
         Toast.makeText(FreePlay.this, "Recording Started",
-                Toast.LENGTH_SHORT).show();
+              Toast.LENGTH_SHORT).show();
     }
     public void pauseButton(View view) {
         if(currRecord != null) {
@@ -361,8 +361,8 @@ public class FreePlay extends AppCompatActivity {
                 currRecord = null;
                 Toast.makeText(FreePlay.this, "Recording Saved",
                         Toast.LENGTH_SHORT).show();
-                Toast.makeText(FreePlay.this, recorded_songs.toString(),
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(FreePlay.this, recorded_songs.toString(),
+                //        Toast.LENGTH_LONG).show();
 
 
                 //code to send song back to main activity?????

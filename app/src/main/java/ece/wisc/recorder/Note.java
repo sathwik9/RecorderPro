@@ -1,6 +1,8 @@
 package ece.wisc.recorder;
 
-public class Note {
+import java.io.Serializable;
+
+public class Note implements Serializable {
     private Integer mp3_file;
     long time;
     public Note(Integer set_mp3, long set_time){
