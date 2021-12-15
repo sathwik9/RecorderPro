@@ -1,5 +1,7 @@
 package ece.wisc.recorder;
 
+import android.media.MediaPlayer;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,6 +9,7 @@ public class Record implements Serializable {
     private ArrayList<Note> song;
     private long start_time;
     private String title;
+
 
     public Record(){
         song = new ArrayList<>();
@@ -33,4 +36,5 @@ public class Record implements Serializable {
     public ArrayList<Note> getSong(){return song;}
 
     public long getStartTime(){return start_time;}
+
 }
