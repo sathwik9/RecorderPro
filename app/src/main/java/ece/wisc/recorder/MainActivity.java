@@ -53,8 +53,18 @@ public class MainActivity extends AppCompatActivity {
                 interruptedException.printStackTrace();
             }
 
-            e.setTitle("p");
+            e.setTitle("Example0");
             recorded_songs.add(e);
+            Record e1 = new Record();
+            e1.setTitle("Example1");
+            recorded_songs.add(e1);
+            Record e2 = new Record();
+            e2.setTitle("Example2");
+            recorded_songs.add(e2);
+            Record e3 = new Record();
+            e3.setTitle("Example3");
+            recorded_songs.add(e3);
+
         }
 
 

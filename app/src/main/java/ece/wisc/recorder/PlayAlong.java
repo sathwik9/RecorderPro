@@ -560,7 +560,7 @@ public class PlayAlong extends AppCompatActivity {
                     boolean c = L1 && L2 && L3 && L4 && !L4_2 && R1 && R2 && R3 && !R3_2 && R4 && !R4_2;
                     boolean d = L1 && L2 && L3 && L4 && !L4_2 && R1 && R2 && R3 && !R3_2 && !R4 && !R4_2;
                     boolean e = L1 && L2 && L3 && L4 && !L4_2 && R1 && R2 && !R3 && !R3_2 && !R4 && !R4_2;
-                    boolean f = L1 && L2 && L3 && L4 && !L4_2 && R1 && !R2 && R3 && !R3_2 && !R4 && !R4_2;
+                    boolean f = L1 && L2 && L3 && L4 && !L4_2 && R1 && !R2 && R3 && !R3_2 && R4 && !R4_2;
                     boolean g = L1 && L2 && L3 && L4 && !L4_2 && !R1 && !R2 && !R3 && !R3_2 && !R4 && !R4_2;
 
                     if (a) {
